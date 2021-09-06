@@ -1,5 +1,5 @@
 # Cloud Foundry Scripts
-[Loop over apps instances](https://github.com/KrzMar/cf_scripts/blob/main/loop_over_apps_instances.sh) moves recursively through all applications guids and their containers instances and executes specified commands against them (via **SSH**). Each started app instance returns parsable json with the app's guid, it's instance index and your command output. Feed 'guids' and 'container_command' variables to run the script.
+[Loop over apps instances](https://github.com/KrzMar/cf_scripts/blob/main/loop_over_apps_instances.sh) script moves recursively through all applications (guids) instances (containers) and executes specified commands against them (via **SSH**). Each started app instance returns parsable json with the app's guid, it's instance index and your command output. Feed 'guids' and 'container_command' variables to run the script.
 
 ```bash
 $ guids=$(cf curl /v3/apps | jq -r .resources[].guid) \
