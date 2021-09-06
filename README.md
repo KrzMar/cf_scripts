@@ -4,7 +4,7 @@
 ```bash
 $ guids=$(cf curl /v3/apps | jq -r .resources[].guid) \
 $ container_command="env | grep CF_INSTANCE_INTERNAL_IP | cut -d "=" -f 2" \
-$ ./loop_over_containers_github.sh
+$ ./loop_over_apps_instances.sh
 ##########################################################################
 ## SSH access is limited by your current CF user (admin) role
 ##########################################################################
