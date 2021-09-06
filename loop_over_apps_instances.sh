@@ -4,10 +4,10 @@ echo "## SSH access is limited by your current CF user ($(cf t | grep user | awk
 echo "##########################################################################" 1>&2
 
 #command to be done inside the container
-container_command="env | grep CF_INSTANCE_INTERNAL_IP | cut -d "=" -f 2"
+#container_command="env | grep CF_INSTANCE_INTERNAL_IP | cut -d "=" -f 2"
 #container_command="cat ~/app/logs/staging_task.log | grep 'Java version selected'"
 
-guids=""
+#guids=""
 
 ssh_link=$(cf curl / | jq -r .links.app_ssh.href)
 ssh_host=$(echo $ssh_link | cut -d ':' -f 1)
