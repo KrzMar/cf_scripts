@@ -1,8 +1,10 @@
 # Cloud Foundry Scripts
-[Loop over apps instances](https://github.com/KrzMar/cf_scripts/blob/main/loop_over_apps_instances.sh) moves recursively through all applications guids and their containers instances and executes specified commands against them (via **SSH**). Each started app instance returns parsable json with the app's guid, it's instance index and your command output. It's not super defensive script. Feed 'guids' variable with all applications guids you want to visit.
+[Loop over apps instances](https://github.com/KrzMar/cf_scripts/blob/main/loop_over_apps_instances.sh) moves recursively through all applications guids and their containers instances and executes specified commands against them (via **SSH**). Each started app instance returns parsable json with the app's guid, it's instance index and your command output. Feed 'guids' and 'container_command' variables to run the script.
 
 ```bash
-# guids=$(cf curl /v3/apps | jq -r .resources[].guid) ./loop_over_apps_instances.sh
+$ guids=$(cf curl /v3/apps | jq -r .resources[].guid) \
+$ container_command="env | grep CF_INSTANCE_INTERNAL_IP | cut -d "=" -f 2" \
+$ ./loop_over_containers_github.sh
 ##########################################################################
 ## SSH access is limited by your current CF user (admin) role
 ##########################################################################
@@ -19,5 +21,5 @@
 {"guid":"203a970c-418f-4f9c-8e61-45df1ac9ee1c","i":"0","output":"11.249.119.22"}
 ```
 
-\*it's not perfect - might require some adaptation  
-\*\*tested on Ubuntu 18.04.5 LTS (Bionic Beaver), GNU bash, version 4.4.20
+\*it's not perfect and free of bugs - might require some adaptation  
+\*\*tested on Ubuntu 18.04.5 LTS (Bionic Beaver), GNU bash, version 4.4.20, jq-1.5-1-a5b5cbe, cf version 6.51.0+2acd15650.2020-04-07
